@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Real Estate Listings</title>
+    <style>
+        body {
+            background-color: #121212; /* Темный фон */
+            color: #c5c6c7; /* Светло-серый текст */
+            font-family: 'Arial', sans-serif; /* Шрифт */
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1, h2 {
+            color: #66fcf1; /* Неоновый цвет заголовков */
+        }
+
+        .container, form, .real-estate-listing {
+            background-color: #1f2833; /* Слегка светлее темного фона */
+            padding: 20px;
+            border-radius: 5px;
+            margin: 10px;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.5); /* Неоновая подсветка */
+        }
+
+        .login-button {
+            margin: 10px;
+        }
+
+        input, select, button {
+            padding: 10px;
+            margin: 5px 0;
+            border: none;
+            border-radius: 5px;
+            background-color: #0b0c10;
+            color: #66fcf1;
+            width: 100%;
+        }
+
+        button {
+            cursor: pointer;
+            background-color: #45a29e;
+        }
+
+        button:hover {
+            background-color: #66fcf1;
+        }
+
+        a {
+            color: #66fcf1; /* Неоновый цвет ссылок */
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .real-estate-listing {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .real-estate-listing img {
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+<h1>Real Estate Listings</h1>
+<div class="login-button">
+    <a href="/logout" class="button">LOGOUT</a>
+</div>
+
+<!-- Search Form -->
+<form th:action="@{/search}" method="get">
+    <input type="text" name="address" placeholder="Address">
+    <input type="text" name="description" placeholder="Description">
+    <input type="number" name="areaMin" placeholder="Min Area (sq meters)">
+    <input type="number" name="areaMax" placeholder="Max Area (sq meters)">
+    <input type="number" name="priceMin" placeholder="Min Price ($)">
+    <input type="number" name="priceMax" placeholder="Max Price ($)">
+    <input type="number" name="buildYearMin" placeholder="Min Build Year">
+    <input type="number" name="buildYearMax" placeholder="Max Build Year">
+    <input type="number" name="minLivingRooms" placeholder="Min Living Rooms">
+    <input type="number" name="minBathRooms" placeholder="Min Bathrooms">
+    <select name="sortBy">
+        <option value="address">Sort by Address</option>
+        <option value="area">Sort by Area</option>
+        <option value="price">Sort by Price</option>
+        <option value="buildYear">Sort by Build Year</option>
+        <option value="numberOfLivingRooms">Sort by Living Rooms</option>
+        <option value="numberOfBathRooms">Sort by Bathrooms</option>
+    </select>
+    <select name="sortDirection">
+        <option value="asc">Ascending</option>
+        <option value="desc">Descending</option>
+    </select>
+    <button type="submit" class="button">Search</button>
+</form>
+
+<!-- Display Real Estate Listings -->
+<div th:if="${realEstateObjects.isEmpty()}">
+    <p>No real estate listings available.</p>
+</div>
+<div th:unless="${realEstateObjects.isEmpty()}">
+    <div th:each="realEstateObject : ${realEstateObjects}" class="real-estate-listing">
+        <h2 th:text="${realEstateObject.address}">Address</h2>
+        <img th:src="@{${realEstateObject.photoURL}}" alt="Real Estate Image" style="width:200px;height:200px;">
+        <p th:text="'Area: ' + ${realEstateObject.area} + ' sq meters'">Area</p>
+        <p th:text="'Price: $' + ${realEstateObject.price}">Price</p>
+        <p th:text="'Description: ' + ${realEstateObject.description}">Description</p>
+        <p th:text="'Build Year: ' + ${realEstateObject.buildYear}">Build Year</p>
+        <p th:text="'Number of Living Rooms: ' + ${realEstateObject.numberOfLivingRooms}">Number of Living Rooms</p>
+        <p th:text="'Number of Bathrooms: ' + ${realEstateObject.numberOfBathRooms}">Number of Bathrooms</p>
+    </div>
+</div>
+</body>
+</html>

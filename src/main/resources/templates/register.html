@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/resources/images/logo.ico" type="image/x-icon">
+    <title>Регистрация</title>
+    <style>
+        body {
+            background-color: #121212; /* Темный фон */
+            color: #c5c6c7; /* Светло-серый текст */
+            font-family: 'Arial', sans-serif; /* Шрифт */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 360px;
+            padding: 20px;
+            border-radius: 5px;
+            background-color: #1f2833; /* Слегка светлее темного фона */
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5); /* Неоновая подсветка */
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #66fcf1; /* Неоновый цвет для текста */
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #0b0c10;
+            color: #66fcf1; /* Неоновый цвет для ввода */
+            box-shadow: 0 0 5px rgba(0, 255, 255, 0.5); /* Неоновая подсветка для инпутов */
+        }
+
+        button.btn4 {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #45a29e; /* Темно-сине-зеленый фон кнопки */
+            color: #0b0c10; /* Темный текст на кнопке */
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5); /* Неоновая подсветка кнопки */
+            transition: background-color 0.3s;
+        }
+
+        button.btn4:hover {
+            background-color: #66fcf1; /* Смена фона кнопки на неоновый при наведении */
+        }
+
+        a {
+            color: #66fcf1; /* Неоновый цвет ссылок */
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .alert.alert-error {
+            color: #ff5555; /* Цвет ошибки */
+            padding: 10px;
+            text-align: center;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            background-color: #1f2833;
+            box-shadow: 0 0 10px rgba(255, 85, 85, 0.5); /* Красная неоновая подсветка ошибок */
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <form method="POST" th:action="@{/register}" th:object="${user}">
+        <div th:if="${param.exists}" class="alert alert-error">
+            Пользователь с таким именем существует
+        </div>
+        <div th:if="${param.error}" class="alert alert-error">
+            Пароли не совпадают!
+        </div>
+        <div style="display: flex; justify-content: center; margin-bottom: 20px;">
+            <h2>Регистрация</h2>
+        </div>
+        <div class="form-group">
+            <label for="username">Имя пользователя:</label>
+            <input type="text" id="username" name="username" th:field="*{name}" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Пароль:</label>
+            <input type="password" id="password" name="password" th:field="*{password}" required>
+        </div>
+        <div class="form-group">
+            <label for="confirm_password">Повторите пароль:</label>
+            <input type="password" id="confirm_password" name="confirmPassword" th:field="*{confirmPassword}" required>
+        </div>
+        <div style="display: flex; justify-content: center; margin-top: 40px;">
+            <button class="btn4" type="submit">Регистрация</button>
+        </div>
+        <p>Есть аккаунт? <br> <a id="aspec" href="/login" >Войти</a></p>
+    </form>
+</div>
+</body>
+</html>

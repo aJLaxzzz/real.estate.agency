@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,15 +7,38 @@
     <title>Регистрация</title>
     <style>
         body {
-            background-color: #121212; /* Темный фон */
-            color: #c5c6c7; /* Светло-серый текст */
-            font-family: 'Arial', sans-serif; /* Шрифт */
+            background-color: #121212;
+            color: #c5c6c7;
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
+        }
+
+        header, footer {
+            width: 100%;
+            padding: 10px 20px;
+            background-color: #1f2833;
+            color: #66fcf1;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: start;
+            align-items: center;
+        }
+
+        header img {
+            height: 40px;
+            margin-right: 15px;
+        }
+
+        footer {
+            justify-content: center;
+            position: absolute;
+            bottom: 0;
+            font-size: 0.8em;
         }
 
         .container {
@@ -23,8 +46,9 @@
             max-width: 360px;
             padding: 20px;
             border-radius: 5px;
-            background-color: #1f2833; /* Слегка светлее темного фона */
-            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5); /* Неоновая подсветка */
+            background-color: #1f2833;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+            margin-top: 40px;
         }
 
         .form-group {
@@ -34,7 +58,7 @@
         label {
             display: block;
             margin-bottom: 5px;
-            color: #66fcf1; /* Неоновый цвет для текста */
+            color: #66fcf1;
         }
 
         input[type="text"],
@@ -44,8 +68,8 @@
             border: none;
             border-radius: 5px;
             background-color: #0b0c10;
-            color: #66fcf1; /* Неоновый цвет для ввода */
-            box-shadow: 0 0 5px rgba(0, 255, 255, 0.5); /* Неоновая подсветка для инпутов */
+            color: #66fcf1;
+            box-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
         }
 
         button.btn4 {
@@ -53,20 +77,20 @@
             padding: 10px;
             border: none;
             border-radius: 5px;
-            background-color: #45a29e; /* Темно-сине-зеленый фон кнопки */
-            color: #0b0c10; /* Темный текст на кнопке */
+            background-color: #45a29e;
+            color: #0b0c10;
             font-weight: bold;
             cursor: pointer;
-            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5); /* Неоновая подсветка кнопки */
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
             transition: background-color 0.3s;
         }
 
         button.btn4:hover {
-            background-color: #66fcf1; /* Смена фона кнопки на неоновый при наведении */
+            background-color: #66fcf1;
         }
 
         a {
-            color: #66fcf1; /* Неоновый цвет ссылок */
+            color: #66fcf1;
             text-decoration: none;
         }
 
@@ -75,17 +99,20 @@
         }
 
         .alert.alert-error {
-            color: #ff5555; /* Цвет ошибки */
+            color: #ff5555;
             padding: 10px;
             text-align: center;
             margin-bottom: 20px;
             border-radius: 5px;
             background-color: #1f2833;
-            box-shadow: 0 0 10px rgba(255, 85, 85, 0.5); /* Красная неоновая подсветка ошибок */
+            box-shadow: 0 0 10px rgba(255, 85, 85, 0.5);
         }
     </style>
 </head>
 <body>
+<header>
+    <h1>Real Estate Agency</h1>
+</header>
 <div class="container">
     <form method="POST" th:action="@{/register}" th:object="${user}">
         <div th:if="${param.exists}" class="alert alert-error">
@@ -115,5 +142,8 @@
         <p>Есть аккаунт? <br> <a id="aspec" href="/login" >Войти</a></p>
     </form>
 </div>
+<footer>
+    © 2024 Real Estate Agency. Chernykh Timofei ИКБО-36-22.
+</footer>
 </body>
 </html>

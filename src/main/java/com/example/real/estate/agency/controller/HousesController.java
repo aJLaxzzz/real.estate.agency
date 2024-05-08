@@ -18,8 +18,8 @@ public class HousesController {
 
     @GetMapping("/houses")
     public String homePage(Model model) {
-        model.addAttribute("realEstateObjects", realEstateObjectRepository.findAll());
-        return "realEstateList";
+        model.addAttribute("houses", realEstateObjectRepository.findAll());
+        return "houses";
     }
     @GetMapping("/search")
     public String search(@RequestParam(required = false) String address,

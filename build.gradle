@@ -64,7 +64,7 @@ tasks.register('runDb') {
 		}
 
 		println "Starting PostgreSQL container with volume mount"
-		def containerRun = "docker run -d --rm -p 5432:5432 -v real-estate-db-volume:/var/lib/postgresql/data real-estate-db"
+		def containerRun = "docker run -d --rm -p 5433:5432 -v real-estate-db-volume:/var/lib/postgresql/data real-estate-db"
 		containerRun.execute().text
 	}
 }

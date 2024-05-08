@@ -1,14 +1,13 @@
 package com.example.real.estate.agency.controller;
 
-import com.example.real.estate.agency.entity.RealEstateObject;
-import com.example.real.estate.agency.repository.RealEstateObjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
+import com.example.real.estate.agency.repository.RealEstateObjectRepository;
+import com.example.real.estate.agency.entity.RealEstateObject;
 import java.util.List;
 
 @Controller
@@ -18,7 +17,7 @@ public class HousesController {
 
     @GetMapping("/houses")
     public String homePage(Model model) {
-        model.addAttribute("houses", realEstateObjectRepository.findAll());
+        model.addAttribute("realEstateObjects", realEstateObjectRepository.findAll());
         return "houses";
     }
     @GetMapping("/search")
@@ -42,7 +41,7 @@ public class HousesController {
                 buildYearMin, buildYearMax, minLivingRooms, minBathRooms, sort);
 
         model.addAttribute("realEstateObjects", searchResults);
-        return "realEstateList";
+        return "houses";
     }
 
 }

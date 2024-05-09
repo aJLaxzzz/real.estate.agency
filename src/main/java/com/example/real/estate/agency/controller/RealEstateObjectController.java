@@ -71,8 +71,6 @@ public class RealEstateObjectController {
         Integer buildYearMax = params.containsKey("buildYearMax") ? Integer.parseInt(params.getFirst("buildYearMax")) : null;
         Integer minLivingRooms = params.containsKey("minLivingRooms") ? Integer.parseInt(params.getFirst("minLivingRooms")) : null;
         Integer minBathRooms = params.containsKey("minBathRooms") ? Integer.parseInt(params.getFirst("minBathRooms")) : null;
-
-        // Handle sorting
         String sortBy = params.getFirst("sortBy");
         String sortDirection = params.getFirst("sortDirection");
         Sort sort = Sort.by(Sort.Direction.fromString(sortDirection), sortBy);

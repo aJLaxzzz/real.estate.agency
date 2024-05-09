@@ -22,11 +22,13 @@ public class UserInitGenerator {
             new User(
                 null,
                 "admin",
+                "1",
                 passwordEncoder.encode("admin")
             ),
             new User(
                 null,
                 "user",
+                "2",
                 passwordEncoder.encode("user")
             )
         );

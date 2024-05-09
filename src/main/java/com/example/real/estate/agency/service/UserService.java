@@ -35,6 +35,7 @@ public class UserService {
             User user = new User(
                 null,
                 newUser.getName(),
+                newUser.getEmail(),
                 encoder.encode(newUser.getPassword())
             );
             userRepository.save(user);

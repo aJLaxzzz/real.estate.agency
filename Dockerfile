@@ -1,13 +1,16 @@
-# Используйте официальный образ Java
-FROM openjdk:11
+#
+# Build stage
+#
+FROM gradle:latest AS build
+COPY --chown=gradle:gradle . /home/gradle/src
+WORKDIR /home/gradle/src
+RUN gradle build
 
-# Установите рабочую директорию в контейнере
+#
+# Package stage
+#
+FROM openjdk:21
 WORKDIR /app
-
-# Скопируйте файлы проекта в контейнер
-COPY . /app
-
-RUN ./gradlew build
-
-# Запуск приложения на порту 8080
-CMD ["java", "-jar", "build/libs/your-app.jar"]
+COPY --from=build /home/gradle/src/build/libs/*.jar /app/demo.jar
+EXPOSE 8080
+ENTRYPOINT ["java","-jar","demo.jar"]

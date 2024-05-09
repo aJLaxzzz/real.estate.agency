@@ -45,6 +45,13 @@ tasks.named('test') {
 	useJUnitPlatform()
 }
 
+jar {
+	archiveFileName = 'app.jar'
+	manifest {
+		attributes 'Main-Class': 'com.example.real.estate.agency.Application'
+	}
+}
+
 tasks.register('buildDb', Exec) {
 	commandLine 'docker', 'build', '-t', 'real-estate-db:latest', '-f', 'Dockerfile', '.'
 }

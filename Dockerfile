@@ -1,9 +1,13 @@
-FROM openjdk:21-ea-21-jdk
+# Используйте официальный образ Java
+FROM openjdk:11
 
+# Установите рабочую директорию в контейнере
 WORKDIR /app
 
+# Скопируйте файлы проекта в контейнер
 COPY . /app
 
-EXPOSE 8081
+RUN ./gradlew build
 
-ENTRYPOINT ["java","-jar","/app/build/libs/app.jar"]
+# Запуск приложения на порту 8080
+CMD ["java", "-jar", "build/libs/your-app.jar"]

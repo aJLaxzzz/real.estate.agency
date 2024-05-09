@@ -6,4 +6,4 @@ COPY . /app
 
 EXPOSE 8081
 
-ENTRYPOINT ["java","-jar","/app/build/libs/rea-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java","-jar","/app/build/libs/real_estate_db-0.0.1-SNAPSHOT.jar"]

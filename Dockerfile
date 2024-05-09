@@ -1,7 +1,9 @@
-FROM postgres:latest
+FROM openjdk:21-ea-21-jdk
 
-ENV POSTGRES_DB=real_estate_db
-ENV POSTGRES_USER=admin
-ENV POSTGRES_PASSWORD=admin
+WORKDIR /app
 
-EXPOSE 5433
+COPY . /app
+
+EXPOSE 8081
+
+ENTRYPOINT ["java","-jar","/app/build/libs/rea-0.0.1-SNAPSHOT.jar"]

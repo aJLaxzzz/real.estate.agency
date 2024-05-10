@@ -18,9 +18,6 @@ public class UserInitGenerator {
 
     @PostConstruct
     public void generateUsers() {
-        userRepository.deleteAll();
-
-        userRepository.flush();
         List<User> users = List.of(
             new User(
                 null,
